@@ -24,6 +24,7 @@ _***_
 #### Screenshots/Demo Video
 
 _***_
+![Screenshot](Capture.JPG)
 
 #### Usage
 
