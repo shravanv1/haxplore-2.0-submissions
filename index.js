@@ -12,7 +12,8 @@ app.set('view engine','ejs');
 app.use('/public',express.static(path.join(__dirname,'/public')));
 
 app.get('/',(req,res)=>{
-    res.send("Hello World");
+    //res.send("Hello World");
+    res.render("haxplor/front");
 });
 
 app.get('/login',(req,res)=>{
@@ -21,7 +22,8 @@ app.get('/login',(req,res)=>{
 });
 
 app.get('/register',(req,res)=>{
-    res.send("Register");
+    //res.send("Register");
+    res.render("haxplor/reg");
 });
 
 app.post('/get', (req, res) => {
