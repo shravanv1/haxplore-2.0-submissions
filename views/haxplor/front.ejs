@@ -48,7 +48,10 @@
           <div class="card-body">
             <h4 class="card-title">Scan a code</h4>
             <p class="card-text">Upload a QR Code using the button below to scan it and know the lifecycle of the product.</p>
-            <input class="btn-primary btn" type="file" id="upload">
+            <form action="/send" method="POST">
+              <input id="img" type="file" name = "qr">
+              <button id = "sb" type = "submit" disabled>Send data</button>
+            </form>
           </div>
         </div>
         <!-- <button type="button" class="col-sm-5" style="margin-left: 100px; margin-top: 60px;" disabled>View Results</button> -->
@@ -61,51 +64,10 @@
 
 <script>
 
-(function() {
-        'use strict';
-
-        var upload = document.getElementById('upload');
-        var preview = document.getElementById('preview');
-        var qr = new QrCode();
-
-        qr.callback = function(err, result) {
-          var span = document.querySelector('span') || document.createElement('span');
-          if(result){
-            span.textContent = result;
-          }
-          else{
-            span.textContent = 'Error! See error message in console!';
-            console.error(err);
-          }
-          preview.appendChild(span);
-        }
-
-        upload.addEventListener('change', function() {
-          for (var i = 0; i < this.files.length; i++) {
-            var file = this.files[i];
-            var imageType = /^image\//;
-
-            if (!imageType.test(file.type)) {
-              throw new Error('File type not valid');
-            }
-
-            // Read file
-            var reader = new FileReader();
-            reader.addEventListener('load', function() {
-              // Show as preview image
-              var img = document.querySelector('img') || document.createElement('img');
-              img.src = this.result;
-              preview.appendChild(img);
-
-              // Analyse code
-              qr.decode(this.result);
-            }.bind(reader), false);
-            reader.readAsDataURL(file);
-          }
-        }, false);
-      })();
-
-
+var img = document.getElementById('img');
+img.addEventListener('change', ()=>{
+  document.getElementById('sb').disabled = false;
+});
 function myFunction() {
   var x = document.getElementById("myTopnav");
   if (x.className === "topnav") {
