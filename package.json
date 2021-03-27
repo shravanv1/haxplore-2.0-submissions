@@ -4,7 +4,7 @@
   "description": "This is the official code repository for HAXPLORE2.0. This _WEB APP_ was developed during HaXplore 2.0, \r the online hackathon conducted by Codefest, the annual departmental fest of Computer Science department, IIT BHU Varanasi.",
   "main": "index.js",
   "scripts": {
-    "start" : "nodemon index.js"
+    "start": "nodemon index.js"
   },
   "dependencies": {
     "body-parser": "^1.19.0",
