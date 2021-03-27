@@ -5,7 +5,7 @@ const path = require('path');
 var bodyParser = require('body-parser');
 const multer = require("multer");
 const app = express();
-const db = require('./dbcon');
+// const db = require('./dbcon');
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json())
 app.set('view engine','ejs'); 
