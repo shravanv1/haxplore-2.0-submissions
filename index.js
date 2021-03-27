@@ -9,6 +9,7 @@ const db = require('./dbcon');
 express().use(bodyParser.urlencoded({ extended: true }));
 express().use(bodyParser.json())
 
+
 app.get('/',(req,res)=>{
     res.send("Hello World");
 });
