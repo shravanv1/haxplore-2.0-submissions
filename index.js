@@ -5,7 +5,7 @@ const path = require('path');
 var bodyParser = require('body-parser');
 const multer = require("multer");
 const app = express();
-const db = require('./dbcon');
+// const db = require('./dbcon');
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json())
 app.set('view engine','ejs'); 
@@ -26,7 +26,42 @@ app.get('/register',(req,res)=>{
     res.render("haxplor/reg");
 });
 
-app.post('/get', (req, res) => {
+// Data to be stored as:
+
+var obj = {
+    key: 'haxplore', // If this isn't present in the scanned qr code then return invalid code
+    pid: 1, // Id of product
+    producer: [
+        //contains ids of producer, same for supplier and seller
+    ],
+    supplier: [
+        // contains ids of supplier, along with the producer who supplies to this supplier
+        ['a', 'b'], ['c', 'd'] // Like this
+    ],
+    seller: [
+        // Similar like supplier
+    ], // No object for consumers as they'll scan the qr directly from homepage
+    data: {
+        producer: {
+            // data entered at producer level gets appended here
+        },
+        supplier: {
+
+        },
+        seller: {
+
+        }
+    }
+};
+
+
+app.post('/send', (req, res) => {
+    console.log(req.body);
+    // Check if username, role and password match
+    // If they match, check if the username exits in the 'role' key of product 'pid' 
+    // If username exits then append data and generate new qr code
+
+
     res.send('Recieved');
 })
 
@@ -46,7 +81,8 @@ app.post('/signup', (req,res) => {
     res.send("Successful Sign up");
 }); 
 app.post('/login',(req,res) => {
-     
+    
+    // console.log(req.body);
     let sql= 'SELECT * FROM user WHERE username = ?';
     //console.log(data);
     db.query(sql,req.body.username,(err,resu) => {

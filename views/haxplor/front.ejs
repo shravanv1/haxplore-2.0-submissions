@@ -4,11 +4,16 @@
 	<meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Expense App</title>
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<title>TraceX</title><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css">
 	<link rel="shortcut icon" href="E.png" type="image/x-icon">
-	<link rel="stylesheet" type="text/css" href="/public/style.css">
+  <script src="https://www.jsdelivr.com/package/npm/qrcode-reader"></script>
+  <!-- CSS only -->
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<link rel="stylesheet" type="text/css" href="/public/style.css">
 	<link rel="stylesheet" type="text/css" href="/public/pass.css">
 	<link rel="stylesheet" type="text/css" href="/public/stylec.css">
 	
@@ -16,12 +21,41 @@
 <body>
 	<div class="topnav" id="myTopnav">
     		
-                 <a href="front.ejs" class="action" >Shravanv1</a>
-                 <a href="front.ejs"><i class="fa fa-fw fa-home home"></i>HOME</a>
-                 <a href="login.ejs"  ><i class="fa fa-book fa-fw blog"></i>LOGIN</a>
-                   <a href="reg.ejs" ><i class="fa fa-fw fa-users team"></i> REGISTER</a>
-                 <a href="practice.ejs" class="top"><i class="fas fa-laptop-code relode"></i></i>LOGOUT</a>
+                 <a href="/" class="action" >Trace-X</a>
+                 <a href="/"><i class="fa fa-fw fa-home home"></i>HOME</a>
+                 <a href="/login"  ><i class="fa fa-book fa-fw blog"></i>LOGIN</a>
+                   <a href="/register" ><i class="fa fa-fw fa-users team"></i> REGISTER</a>
+                 <a href="#" class="top"><i class="fas fa-laptop-code relode"></i></i>LOGOUT</a>
                  <a href="javascript:void(0);" class="icon" onclick="myFunction()"><i class="fa fa-bars"></i></a>
+    </div>
+
+    <!-- Button trigger modal -->
+
+    <!-- <hr> -->
+
+    <div class="row" style="margin-top: 30px;">
+      <div class="col-sm-5">
+        <div class="card" style="margin-left: 100px; margin-right: 80px;">
+          <div class="card-body">
+            <h4 class="card-title">Overview</h4>
+            <p class="card-text">We are aiming to develop a platform that'll suit the needs of all the participants in the lifecycle of a product from production to consumption. The platform will have a login system where the user can verify the authenticity of the product/consignment recieved by scanning a QR Code that'll contain the details upto that point in the lifecycle. This user wiill update the details, generate a new code and forward the new details.</p>
+            <a href="https://github.com/shravanv1/haxplore-2.0-submissions" class="btn btn-primary">Github</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-5">
+        <div class="card" style="margin-left: 20px;" >
+          <div class="card-body">
+            <h4 class="card-title">Scan a code</h4>
+            <p class="card-text">Upload a QR Code using the button below to scan it and know the lifecycle of the product.</p>
+            <form action="/send" method="POST">
+              <input id="img" type="file" name = "qr">
+              <button id = "sb" type = "submit" disabled>Send data</button>
+            </form>
+          </div>
+        </div>
+        <!-- <button type="button" class="col-sm-5" style="margin-left: 100px; margin-top: 60px;" disabled>View Results</button> -->
+      </div>
     </div>
 
 
@@ -29,6 +63,11 @@
 
 
 <script>
+
+var img = document.getElementById('img');
+img.addEventListener('change', ()=>{
+  document.getElementById('sb').disabled = false;
+});
 function myFunction() {
   var x = document.getElementById("myTopnav");
   if (x.className === "topnav") {
