@@ -19,7 +19,7 @@ _The idea was selected from the AWS track. We are aiming to develop a platform t
 
 #### Technology used
 
-_***_
+_HTML, CSS, JavaScript, Bootstrap, Node.js, Express.js, EJS View engine, MySQL, Git_
 
 #### Screenshots/Demo Video
 
@@ -28,7 +28,7 @@ _***_
 
 #### Usage
 
-_***_
+_Users can scan QR Codes from the scanner on the first page by uploading images of QR Codes. A JSON file is returned which contains the details about the product from its inception, upto that point in the supply chain. Nodes in supply chain which aren't end users can also update the QR Codes and add new information to it using the edit page._
 
 #### Tracks used
 Amazon Web Services Track.
@@ -40,6 +40,6 @@ application follow that track._
 
 _Write in brief about how you used AWS service to improve your application._
 
-
+---
 
 
