@@ -1,12 +1,14 @@
 # HaXplore 2.0 - Submission Report Format
 
-This is the official code repository for _TEAM NAME_ . This _type of application_ was developed during HaXplore 2.0, 
+This is the official code repository for HAXPLORE2.0 . This _WEB APP_ was developed during HaXplore 2.0, 
 the online hackathon conducted by Codefest, the annual departmental fest of Computer Science department, IIT BHU Varanasi.
 
-### _Team Name_
+### _HAXPLORE2.0_
 
-* _Member_
-* _Member_
+* _Shravan Kumar Verma_
+* _Ratnesh Kumar Verma_
+* _Shikher Sihna_
+* _Karandeep Singh_
 
 #### _Project Name_
 
