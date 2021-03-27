@@ -6,8 +6,8 @@ var bodyParser = require('body-parser');
 const multer = require("multer");
 const app = express();
 
-express().use(bodyParser.urlencoded({ extended: true }));
-express().use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json())
 
 app.get('/',(req,res)=>{
     res.send("Hello World");

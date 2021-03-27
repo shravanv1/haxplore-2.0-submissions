@@ -27,3 +27,10 @@ IF NOT EXISTS `qrcode` (
   PRIMARY KEY(`id`)
   );
 
+  DROP TABLE IF EXISTS `product`;
+CREATE TABLE
+IF NOT EXISTS `product` (
+  `id` BIGINT NOT NULL AUTO_INCREMENT,
+  `name` TEXT NOT NULL,
+  PRIMARY KEY(`id`)
+  );
