@@ -5,13 +5,15 @@ const path = require('path');
 var bodyParser = require('body-parser');
 const multer = require("multer");
 const app = express();
-const db = require('./dbcon');
+// const db = require('./dbcon');
 express().use(bodyParser.urlencoded({ extended: true }));
 express().use(bodyParser.json())
 
+app.set('view engine', 'ejs');
+
 
 app.get('/',(req,res)=>{
-    res.send("Hello World");
+    res.render('haxplor/front.ejs');
 });
 
 app.get('/login',(req,res)=>{
