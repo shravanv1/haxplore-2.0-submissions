@@ -1,0 +1,19 @@
+{
+  "name": "haxplore-2.0-submissions",
+  "version": "1.0.0",
+  "description": "This is the official code repository for HAXPLORE2.0. This _WEB APP_ was developed during HaXplore 2.0, \r the online hackathon conducted by Codefest, the annual departmental fest of Computer Science department, IIT BHU Varanasi.",
+  "main": "index.js",
+  "scripts": {
+    "start" : "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shravanv1/haxplore-2.0-submissions.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/shravanv1/haxplore-2.0-submissions/issues"
+  },
+  "homepage": "https://github.com/shravanv1/haxplore-2.0-submissions#readme"
+}
