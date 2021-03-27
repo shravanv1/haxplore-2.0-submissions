@@ -1,0 +1,29 @@
+CREATE DATABASE
+IF NOT EXISTS `trace`;
+USE trace;
+
+
+DROP TABLE IF EXISTS `user`;
+CREATE TABLE
+IF NOT EXISTS `user` (
+
+  `id` BIGINT NOT NULL AUTO_INCREMENT,
+  `firstName` VARCHAR(50) NOT NULL,
+  `lastName` VARCHAR(50) NOT NULL,
+  `email` VARCHAR(50) NULL,
+  `password` VARCHAR(80) NOT NULL,
+  `role` VARCHAR(30) NOT NULL,
+  UNIQUE INDEX `uq_email`(`email` ASC),
+  PRIMARY KEY(`id`)
+  );
+
+  DROP TABLE IF EXISTS `qrcode`;
+CREATE TABLE
+IF NOT EXISTS `qrcode` (
+
+  `id` BIGINT NOT NULL AUTO_INCREMENT,
+  `qr` TEXT NOT NULL,
+  `rights` TEXT,
+  PRIMARY KEY(`id`)
+  );
+
