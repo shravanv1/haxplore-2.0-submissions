@@ -6,16 +6,18 @@ var bodyParser = require('body-parser');
 const multer = require("multer");
 const app = express();
 const db = require('./dbcon');
-express().use(bodyParser.urlencoded({ extended: true }));
-express().use(bodyParser.json())
-
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json())
+app.set('view engine','ejs'); 
+app.use('/public',express.static(path.join(__dirname,'/public')));
 
 app.get('/',(req,res)=>{
     res.send("Hello World");
 });
 
 app.get('/login',(req,res)=>{
-    res.send("Login");
+    //res.send("Login");
+    res.render("haxplor/login");
 });
 
 app.get('/register',(req,res)=>{
