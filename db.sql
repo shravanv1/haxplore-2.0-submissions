@@ -8,8 +8,8 @@ CREATE TABLE
 IF NOT EXISTS `user` (
 
   `id` BIGINT NOT NULL AUTO_INCREMENT,
-  `firstName` VARCHAR(50) NOT NULL,
-  `lastName` VARCHAR(50) NOT NULL,
+  `name` VARCHAR(50) NOT NULL,
+  `username` VARCHAR(50) NOT NULL,
   `email` VARCHAR(50) NULL,
   `password` VARCHAR(80) NOT NULL,
   `role` VARCHAR(30) NOT NULL,
