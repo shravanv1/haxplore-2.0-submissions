@@ -31,34 +31,6 @@ app.get('/register',(req,res)=>{
     res.render("haxplor/reg");
 });
 
-// Data to be stored as:
-
-var obj = {
-    key: 'haxplore', // If this isn't present in the scanned qr code then return invalid code
-    pid: 1, // Id of product
-    producer: [
-        //contains ids of producer, same for supplier and seller
-    ],
-    supplier: [
-        // contains ids of supplier, along with the producer who supplies to this supplier
-        ['a', 'b'], ['c', 'd'] // Like this
-    ],
-    seller: [
-        // Similar like supplier
-    ], // No object for consumers as they'll scan the qr directly from homepage
-    data: {
-        producer: {
-            // data entered at producer level gets appended here
-        },
-        supplier: {
-
-        },
-        seller: {
-
-        }
-    }
-};
-
 app.get('/qr/:id',(req,res)=>{
     let data ={pid : req.params.id};
     db.query(`SELECT * FROM qrcode WHERE ?`,data,(err,resu)=>{
@@ -70,9 +42,6 @@ app.get('/qr/:id',(req,res)=>{
 });
 app.post('/gen', (req, res) => {
     console.log(req.body);
-    // Check if username, role and password match
-    // If they match, check if the username exits in the 'role' key of product 'pid' 
-    // If username exits then append data and generate new qr code
     
     let sql= 'SELECT * FROM user WHERE username = ?';
     
@@ -100,8 +69,8 @@ app.post('/gen', (req, res) => {
     });
 
 })
-app.post('/send',(req,res)=>{
-     res.send("sent");
+app.post('/scan',(req,res)=>{
+     res.render('haxplor/scan');
 });
 app.post('/signup', (req,res) => {
     console.log(req.body);
