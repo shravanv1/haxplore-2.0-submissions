@@ -25,6 +25,7 @@ _HTML, CSS, JavaScript, Bootstrap, Node.js, Express.js, EJS View engine, MySQL, 
 
 _***_
 ![Screenshot](Capture.JPG)
+[Watch the video](https://drive.google.com/file/d/1B7-dyxQjNl4r3VKpr0XRxSO-NVbr4S23/view?ts=60605817)
 
 #### Usage
 
