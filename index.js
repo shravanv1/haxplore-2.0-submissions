@@ -59,7 +59,15 @@ var obj = {
     }
 };
 
-
+app.get('/qr/:id',(req,res)=>{
+    let data ={pid : req.params.id};
+    db.query(`SELECT * FROM qrcode WHERE ?`,data,(err,resu)=>{
+        if(err) throw err;
+        console.log(resu);
+        res.render("haxplor/qrcode",{obj:resu[0]});
+    });
+    
+});
 app.post('/gen', (req, res) => {
     console.log(req.body);
     // Check if username, role and password match
