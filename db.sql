@@ -20,11 +20,14 @@ IF NOT EXISTS `user` (
   DROP TABLE IF EXISTS `qrcode`;
 CREATE TABLE
 IF NOT EXISTS `qrcode` (
-
-  `id` BIGINT NOT NULL AUTO_INCREMENT,
-  `qr` TEXT NOT NULL,
+  `key` TEXT NOT NULL DEFAULT 'haxplore',
+  `pid` BIGINT NOT NULL AUTO_INCREMENT,
+  `producer` TEXT DEFAULT '',
+  `supplier` TEXT DEFAULT '',
+  `seller` TEXT DEFAULT '',
+  `dat` TEXT NOT NULL,
   `rights` TEXT,
-  PRIMARY KEY(`id`)
+  PRIMARY KEY(`pid`)
   );
 
   DROP TABLE IF EXISTS `product`;

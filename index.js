@@ -6,11 +6,14 @@ var bodyParser = require('body-parser');
 const multer = require("multer");
 const app = express();
 const db = require("./dbcon");
+const cookieParser = require('cookie-parser');
+//const session = require('express-session');
 // const db = require('./dbcon');
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json())
 app.set('view engine','ejs'); 
 app.use('/public',express.static(path.join(__dirname,'/public')));
+//app.use(session({secret: "Ye hamara project hai aur ye hamari hackathon ho ri hai"}));
 
 app.get('/',(req,res)=>{
     //res.send("Hello World");
@@ -19,6 +22,7 @@ app.get('/',(req,res)=>{
 
 app.get('/login',(req,res)=>{
     //res.send("Login");
+
     res.render("haxplor/login");
 });
 
@@ -56,16 +60,41 @@ var obj = {
 };
 
 
-app.post('/send', (req, res) => {
+app.post('/gen', (req, res) => {
     console.log(req.body);
     // Check if username, role and password match
     // If they match, check if the username exits in the 'role' key of product 'pid' 
     // If username exits then append data and generate new qr code
+    
+    let sql= 'SELECT * FROM user WHERE username = ?';
+    
+    //console.log(data);
+    db.query(sql,req.body.username,(err,resu) => {
+        if(err) throw err; 
+        
+        console.log(resu); 
+        if(resu.length<1)
+        res.send("Invalid username or password");
+        else if(resu[0].password == req.body.password) 
+        {   let data = {
+              pid : req.body.pid,
+              dat : req.body.dat
+           };
+            let sql1 = `INSERT INTO qrcode SET pid = '${req.body.pid}', dat = '${req.body.username} : ${req.body.dat}', ${req.body.role} = '${req.body.username}' ON DUPLICATE KEY UPDATE dat = CONCAT(dat, '\n${req.body.username} : ${req.body.dat}'), ${req.body.role} = CONCAT(${req.body.role}, '\n${req.body.username}') `;
+            console.log(sql1);
+            db.query(sql1,(er,re)=>{
+                   if(er) throw er;
+                   console.log(re);
+            });
+             res.send("Successful sent");
+        } 
+        else res.send("Invalid username or password");
+    });
 
-
-    res.send('Recieved');
 })
-
+app.post('/send',(req,res)=>{
+     res.send("sent");
+});
 app.post('/signup', (req,res) => {
     console.log(req.body);
     data = {
@@ -93,7 +122,7 @@ app.post('/login',(req,res) => {
         if(resu.length<1)
         res.send("Invalid username or password");
         else if(resu[0].password == req.body.password) 
-        res.send("Successful Login"); 
+        res.redirect('/'); 
         else res.send("Invalid username or password");
     });   
     
