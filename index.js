@@ -59,7 +59,15 @@ var obj = {
     }
 };
 
-
+app.get('/qr/:id',(req,res)=>{
+    let data ={pid : req.params.id};
+    db.query(`SELECT * FROM qrcode WHERE ?`,data,(err,resu)=>{
+        if(err) throw err;
+        console.log(resu);
+        res.render("haxplor/qrcode",{obj:resu[0]});
+    });
+    
+});
 app.post('/gen', (req, res) => {
     console.log(req.body);
     // Check if username, role and password match
@@ -80,7 +88,7 @@ app.post('/gen', (req, res) => {
               pid : req.body.pid,
               dat : req.body.dat
            };
-            let sql1 = `INSERT INTO qrcode SET pid = '${req.body.pid}', dat = '${req.body.username} : ${req.body.dat}', ${req.body.role} = '${req.body.username}' ON DUPLICATE KEY UPDATE dat = CONCAT(dat, '\n${req.body.username} : ${req.body.dat}'), ${req.body.role} = CONCAT(${req.body.role}, '\n${req.body.username}') `;
+            let sql1 = `INSERT INTO qrcode SET pid = '${req.body.pid}', dat = '${req.body.username} : ${req.body.dat}\n', ${req.body.role} = '${req.body.username}\n' ON DUPLICATE KEY UPDATE dat = CONCAT(dat, '${req.body.username} : ${req.body.dat}\n'), ${req.body.role} = CONCAT(${req.body.role}, '${req.body.username}\n') `;
             console.log(sql1);
             db.query(sql1,(er,re)=>{
                    if(er) throw er;

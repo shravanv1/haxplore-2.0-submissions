@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <script type="text/javascript" src="/public/qrcode.js">
+</script>
+    <script type="text/javascript" src="/public/html5-qrcode.js">
+</script>
+    <style type="text/css" media="screen">
+      body { text-align:center; }
+    </style>
+  </head>
+  <body>
+    <form name="QRform" id="QRform">
+      <textarea name="textField" hidden rows="8" cols="70" onkeyup='updateQRCode(this.value)' onclick="this.focus();this.select();">HAXPLOR</textarea>
+    </form>
+    
+    <!-- This is where our QRCode will appear in. -->
+    <div id = "text"></div>
+    <div id="qrcode"></div>
+    <script type="text/javascript">
+      function updateQRCode(text) {
+
+        var element = document.getElementById("qrcode");
+
+        var bodyElement = document.body;
+        if(element.lastChild)
+          element.replaceChild(showQRCode(text), element.lastChild);
+        else
+          element.appendChild(showQRCode(text));
+
+      }
+      var d = <%-JSON.stringify(obj)%>;
+      let str = "Key = " + d.key +"\nProd ID = "+ d.pid +"\nProducer = "+ d.producer + "\nSupplier = " + d.supplier + "\nSeller = " + d.seller + "\n Data = " + d.dat;
+     updateQRCode(str);
+     console.log(str);
+    </script>
+  </body>
+</html>
